@@ -1,0 +1,37 @@
+﻿@page
+@model Web.Pages.ListCars.ListCarModel
+@{
+}
+
+@{
+    ViewData["Title"] = "Cadastro de Administrador";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Cadastro de Administrador</h2>
+
+    @* @if (!string.IsNullOrEmpty(Model.Mensagem)) *@
+    @* { *@
+    @*     <div class="alert alert-success">@Model.Mensagem</div> *@
+    @* } *@
+
+    <form method="post">
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            @* <input type="text" class="form-control" id="nome" asp-for="Administrador.Nome" required> *@
+        </div>
+        <div class="mb-3">
+            <label for="descricaoCargo" class="form-label">Descrição do Cargo</label>
+            @* <input type="text" class="form-control" id="descricaoCargo" asp-for="Administrador.DescricaoCargo" required> *@
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            @* <input type="email" class="form-control" id="email" asp-for="Administrador.Email" required> *@
+        </div>
+        <div class="mb-3">
+            <label for="senha" class="form-label">Senha</label>
+            @* <input type="password" class="form-control" id="senha" asp-for="Administrador.Senha" required> *@
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+</div>
