@@ -4,6 +4,7 @@ using Application.Dtos.Response.CreateCarResponse;
 using AutoMapper;
 using Domain.Contratos.CarInterface;
 using Domain.Entities.Cars;
+using Domain.Enums;
 
 namespace Application.UseCases.CarUseCase
 {
@@ -20,7 +21,10 @@ namespace Application.UseCases.CarUseCase
 
         public async Task<Cars> CreateCar(CreateCarRequest request)
         {
-            var addCar = new Cars(request.Model.ToLower(), request.Year, request.Dors, request.Marca.ToLower(), request.Placa.ToUpper(), request.Cor.ToLower(), request.Quilometragem, request.Cambio.ToLower(), request.Combustivel.ToLower(), request.Capacidade, request.ArCondicionado, request.Disponivel, request.PrecoDiaria, request.Status.ToLower(), request.DataUltimaManutencao)
+            var addCar = new Cars(request.Model.ToLower(), request.Year, request.Dors, request.Marca.ToLower(),
+                request.Placa.ToUpper(), request.Cor.ToLower(), request.Quilometragem, request.Cambio.ToLower(),
+                request.Combustivel.ToLower(), request.Capacidade, request.ArCondicionado, request.Disponivel,
+                request.PrecoDiaria, (StatusCarro)Enum.Parse(typeof(StatusCarro), request.Status, true), request.DataUltimaManutencao)
             {
                 Id = Guid.NewGuid(),
                 RegisterTime = DateTime.Now,
@@ -38,6 +42,7 @@ namespace Application.UseCases.CarUseCase
             var listaCarros = await _repository.GetCars();
             return _mapper.Map<List<CreateCarResponse>>(listaCarros);
         }
+
         public async Task<Cars> GetCarById(Guid Id)
         {
             var car = await _repository.GetCarById(Id) ?? throw new KeyNotFoundException("Carro não encontrado;");
@@ -67,7 +72,7 @@ namespace Application.UseCases.CarUseCase
             car.ArCondicionado = request.ArCondicionado;
             car.Disponivel = request.Disponivel;
             car.PrecoDiaria = request.PrecoDiaria;
-            car.Status = request.Status.ToLower();
+            car.Status = (StatusCarro)Enum.Parse(typeof(StatusCarro), request.Status, true);
             car.DataUltimaManutencao = request.DataUltimaManutencao;
 
 

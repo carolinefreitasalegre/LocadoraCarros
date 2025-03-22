@@ -1,8 +1,14 @@
-﻿namespace Domain.Entities.Locacoes
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
+using Domain.Enums;
+
+namespace Domain.Entities.Locacoes
 {
     public class RentalCar
     {
-        public RentalCar(Guid carroId, Guid clienteId, DateTime dataInicio, DateTime dataFimPrevista, DateTime? dataFimReal, decimal precoDiaria, int diasAlugados, decimal valorTotal, string status)
+        public RentalCar(Guid carroId, Guid clienteId, DateTime dataInicio, DateTime dataFimPrevista, DateTime? dataFimReal, decimal precoDiaria, int diasAlugados, decimal valorTotal, StatusLocacao status)
         {
             CarroId = carroId;
             ClienteId = clienteId;
@@ -15,16 +21,28 @@
             Status = status;
         }
 
+        [Key]
         public Guid Id { get; set; } = Guid.NewGuid(); 
         public Guid CarroId { get; set; } 
-        public Guid ClienteId { get; set; } 
+
+        public Guid ClienteId { get; set; }
+
+        [Required]
         public DateTime DataInicio { get; set; } 
+        [Required]
         public DateTime DataFimPrevista { get; set; } 
-        public DateTime? DataFimReal { get; set; } 
-        public decimal PrecoDiaria { get; set; } 
-        public int DiasAlugados { get; set; } 
+        [Required]
+        public DateTime? DataFimReal { get; set; }
+        [Required]
+        [Column(TypeName = "decimal(10,2)")]
+        public decimal PrecoDiaria { get; set; }
+        [Required]
+        public int DiasAlugados { get; set; }
+        [Column(TypeName = "decimal(10,2)")]
+        [Required]
         public decimal ValorTotal { get; set; }
-        public string Status { get; set; } 
+        [Required]
+        public StatusLocacao Status { get; set; } 
     }
 
 }

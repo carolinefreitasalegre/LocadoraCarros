@@ -50,7 +50,7 @@ namespace Api.Controllers
 
             if (!validatorResult.IsValid)
             {
-                return BadRequest("Erro ao adicioar carro. Verifique os campos.");
+                return BadRequest(validatorResult.Errors);
             }
 
 

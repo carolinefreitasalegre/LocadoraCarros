@@ -3,10 +3,10 @@ using Infrastructure.DataAccess;
 
 namespace Application.Validations
 {
-    public class EditRequestValidator : AbstractValidator<EditCarRequest>
+    public class EditCarRequestValidator : AbstractValidator<EditCarRequest>
     {
 
-        public EditRequestValidator()
+        public EditCarRequestValidator()
         {
             
             Include(new CreateCarValidator());

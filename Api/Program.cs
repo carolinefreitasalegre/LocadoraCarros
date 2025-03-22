@@ -1,17 +1,22 @@
 using Application.AutoMapper;
 using Application.Contratos.AdminInterfaceUseCase;
 using Application.Contratos.CarInterfaceUseCase;
+using Application.Contratos.CreateRentalClientInterfacceUseCase;
 using Application.Dtos.Request.CreateCarRequest;
 using Application.Dtos.Request.RequestAdmin;
+using Application.Dtos.Request.RequestClient;
 using Application.UseCases.AdminUseCase;
 using Application.UseCases.CarUseCase;
+using Application.UseCases.CreateRentalClientUseCase;
 using Application.Validations;
 using Domain.Contratos.AdminInterface;
 using Domain.Contratos.CarInterface;
+using Domain.Contratos.RentalClientInterfaceRepository;
 using FluentValidation;
 using Infrastructure.DataAccess;
 using Infrastructure.Repositories.AdminRepositories;
 using Infrastructure.Repositories.CarRepositories;
+using Infrastructure.Repositories.RentalClienRepository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -40,9 +45,13 @@ builder.Services.AddScoped<ICreateCarRepository, CreateCarRepository>();
 builder.Services.AddScoped<ICreateCarUseCase, CreateCarUSeCase>();
 
 
+builder.Services.AddScoped<ICreateRentalClientRepository, CreateRentalClientRepository>();
+builder.Services.AddScoped<ICreateRentalClientUseCase, CreateRentalClientUseCase>();
+
 
 builder.Services.AddTransient<IValidator<CreateAdminRequest>, CreateAdminValidator>();
 builder.Services.AddTransient<IValidator<CreateCarRequest>, CreateCarValidator>();
+builder.Services.AddTransient<IValidator<CreateRentalClientRequest>, CreateRentalClientValidator>();
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
