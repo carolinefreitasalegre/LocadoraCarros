@@ -1,6 +1,7 @@
 ﻿using Application.Contratos.CarInterfaceUseCase;
 using Application.Dtos.Request.CreateCarRequest;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
@@ -42,7 +43,7 @@ namespace Api.Controllers
             return Ok(car);
         }
 
-
+        [Authorize]
         [HttpPost("/adicionar-carro")]
         public async Task<IActionResult> CreateCar(CreateCarRequest request)
         {
@@ -68,7 +69,7 @@ namespace Api.Controllers
 
         }
 
-
+        [Authorize]
         [HttpPost("/editar-carro/{Id}")]
         public async Task<IActionResult> EditCar(Guid Id, EditCarRequest request)
         {
@@ -92,7 +93,7 @@ namespace Api.Controllers
             return Created("", car);
         }
 
-
+        [Authorize]
         [HttpDelete("/deletar-carro/{Id}")]
         public async Task<IActionResult> DeleteCar(Guid Id)
         {

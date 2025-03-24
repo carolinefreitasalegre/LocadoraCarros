@@ -1,13 +1,22 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.CompilerServices;
-using System.Runtime.Serialization;
 using Domain.Enums;
 
 namespace Domain.Entities.Locacoes
 {
     public class RentalCar
     {
+        public RentalCar(Guid carroId, Guid clienteId, DateTime dataInicio, DateTime dataFimPrevista, DateTime? dataFimReal, decimal precoDiaria, int diasAlugados)
+        {
+            CarroId = carroId;
+            ClienteId = clienteId;
+            DataInicio = dataInicio;
+            DataFimPrevista = dataFimPrevista;
+            DataFimReal = dataFimReal;
+            PrecoDiaria = precoDiaria;
+            DiasAlugados = diasAlugados;
+        }
+
         public RentalCar(Guid carroId, Guid clienteId, DateTime dataInicio, DateTime dataFimPrevista, DateTime? dataFimReal, decimal precoDiaria, int diasAlugados, decimal valorTotal, StatusLocacao status)
         {
             CarroId = carroId;

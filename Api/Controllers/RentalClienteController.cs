@@ -1,12 +1,14 @@
 ﻿using Application.Contratos.CreateRentalClientInterfacceUseCase;
 using Application.Dtos.Request.RequestClient;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
 
 namespace Api.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class RentalClienteController : ControllerBase

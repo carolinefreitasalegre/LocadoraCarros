@@ -1,10 +1,12 @@
 ﻿using Application.Contratos.AdminInterfaceUseCase;
 using Application.Dtos.Request.RequestAdmin;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AdminController : ControllerBase
